@@ -13,6 +13,7 @@ namespace RandomDataGenerator.Common
 
         public string GetJsonObjectString(TEntity entity)
         {
+            //Eric Was here
             return JsonConvert.SerializeObject(entity, Formatting.Indented);
         }
     }
