@@ -10,20 +10,18 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
+
 namespace RandomDataGenerator
 {
     class Program
     {
-
-      
-
         static void Main(string[] args)
         {
 
             MainAsync().GetAwaiter().GetResult();
             Console.ReadKey();
+           
         }
-
 
         public static async Task MainAsync()
         {
@@ -31,32 +29,33 @@ namespace RandomDataGenerator
                .AddJsonFile("appsettings.json", true, true)
                .Build();
 
-            for (var i = 1; i < 100; i++)
-            {
-                DateTime pastDay = RandomValue.RandomPastDay(1, 10000);
+            Console.WriteLine("Configuring services...");
 
-                var birthDay = RandomValue.RandomPastDayString(1, 10000);
+            //for (var i = 1; i < 100; i++)
+            //{
+            //    DateTime pastDay = RandomValue.RandomPastDay(1, 10000);
 
-                var productPrice = RandomValue.RandomFormattedPrice(100, 10000);
+            //    var birthDay = RandomValue.RandomPastDayString(1, 10000);
 
-                var streetNumber = RandomValue.RandomStreetNumber(100, 900);
+            //    var productPrice = RandomValue.RandomFormattedPrice(100, 10000);
 
-                var phoneNumber = RandomValue.RandomPhoneNumber();
+            //    var streetNumber = RandomValue.RandomStreetNumber(100, 900);
 
-                var guidId = Identification.GetGuidId();
+            //    var phoneNumber = RandomValue.RandomPhoneNumber();
 
-                Console.WriteLine(guidId);
-            }
+            //    var guidId = Identification.GetGuidId();
+
+            //    Console.WriteLine(guidId);
+            //}
 
             var serviceProvider = RandomDataGeneratorServiceProvider.GetProvider(config);
             DataServiceProvider dsp = serviceProvider.GetRequiredService<DataServiceProvider>();
             List<CompanyEntity> companyEntities = await dsp.GetCompanies();
-            List<EmployeeEntity> employeesEntities = await dsp.GetEmployees();
-            List<StreetEntity> streetEntities = await dsp.GetStreets();
-
+            //List<EmployeeEntity> employeesEntities = await dsp.GetEmployees();
+            //List<StreetEntity> streetEntities = await dsp.GetStreets();
             //Get a list of employee name structure to pass to company factories
-            List<PersonName> personNameList = employeesEntities.Select(e => new PersonName(e.Id, e.Name.Trim())).ToList();
-            List<StreetName> streetNameList = streetEntities.Select(e => new StreetName(e.Id, e.Name.Trim())).ToList();
+            //List<PersonName> personNameList = employeesEntities.Select(e => new PersonName(e.Id, e.Name.Trim())).ToList();
+            //List<StreetName> streetNameList = streetEntities.Select(e => new StreetName(e.Id, e.Name.Trim())).ToList();
 
 
             foreach (var entity in companyEntities)
@@ -64,7 +63,16 @@ namespace RandomDataGenerator
                 switch (entity.SCAC)
                 {
                     case "WGWI":
-                        ICompany woodgroveWidgets = new WoodGroveWidgetsCompanyFactory().CreateCompany(entity.UID,entity.Name, personNameList);
+                        Console.WriteLine("Generating Employees...");
+                        dsp.GenerateEmployees(entity.Name,entity.UID,10);
+                        Console.WriteLine("Generating Widget Package Types...");
+                        dsp.GenerateWidgetPackageTypes();
+                        Console.WriteLine("Generating Widget Warehouses...");
+                        dsp.GenerateWidgetWarehouses(entity.Name, entity.UID, 2);
+                        Console.WriteLine("Generating Widgets...");
+                      var returnValue =  dsp.GenerateWidgets(entity.Name, entity.UID, 100);
+
+                        //ICompany woodgroveWidgets = new WoodGroveWidgetsCompanyFactory().CreateCompany(entity.UID,entity.Name, personNameList);
                         break;
                     case "OWII":
                         break;
