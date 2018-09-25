@@ -1,0 +1,41 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#loading-div-background').hide();
+        $('#loaddata').click(function () {
+            $('#loading-div-background').show();
+            var uri = 'home/getdata';
+            $.ajax({
+                method: 'GET',
+                url: uri,
+                contentType: 'application/json',
+                success: function (data) {
+                    $('#loading-div-background').hide();
+                },
+                error: function (jqXHR) {
+                    // API returns error in jQuery xml http request object.
+                    $('#loading-div-background').hide();
+                }
+            });
+        });
+    });
+</script>
+
+
+<div class="row">
+    <div class="col-md-12">
+        <h2>Make Long Running Request</h2>
+        <button id="loaddata" class="btn btn-success">Load Data</button>
+    </div>
+
+    <div id="loading-div-background" class="col-md-12" style="padding-top:50px">
+        <div id="loading-div" class="ui-corner-all">
+            <div id="loadingbar"><i class="fa fa-cog fa-spin fa-3x fa-fw"></i>
+            </div>
+            <h2 style="color:gray;font-weight:normal;">Collecting Heat Points....</h2>
+        </div>
+    </div>
+</div>

@@ -9,5 +9,10 @@ namespace RandomDataGenerator.Data.UnitOfWork
         IRepository<EmployeeEntity> EmployeeRepository { get; }
         IRepository<CompanyEntity> CompanyRepository { get; }
         IRepository<StreetEntity> StreetRepository { get; }
+
+        int CallGenerateEmployeesSp(string companyName, Guid companyUID, int count);
+        int CallGenerateWidgetWarehousesSp(string companyName, Guid companyUID, int count);
+        int CallGenerateWidgetsSp(string companyName, Guid companyUID, int count);
+        int CallGenerateWidgetPackageTypeSp();
     }
 }

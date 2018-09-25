@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using RandomDataGenerator.Data.Entities;
@@ -30,6 +31,26 @@ namespace RandomDataGenerator.Data
         {
             var streets = await _unitOfWork.StreetRepository.GetAllAsync();
             return streets.ToList();
+        }
+
+        public int GenerateEmployees(string companyName, Guid companyUID, int count )
+        {
+            return _unitOfWork.CallGenerateEmployeesSp(companyName,companyUID,count);
+        }
+
+        public int GenerateWidgetPackageTypes()
+        {
+            return _unitOfWork.CallGenerateWidgetPackageTypeSp();
+        }
+
+        public int GenerateWidgets(string companyName, Guid companyUID, int count)
+        {
+            return _unitOfWork.CallGenerateWidgetsSp(companyName, companyUID, count);
+        }
+
+        public int GenerateWidgetWarehouses(string companyName, Guid companyUID, int count)
+        {
+            return _unitOfWork.CallGenerateWidgetWarehousesSp(companyName, companyUID, count);
         }
     }
 }
