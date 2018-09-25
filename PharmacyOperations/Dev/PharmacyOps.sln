@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28010.2026
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pharmacy.Operation.Data", "Pharmacy.Operations.DataService\Pharmacy.Operation.Data\Pharmacy.Operation.Data.csproj", "{19ACC4DE-EF73-4946-B6B3-683A07B85D7D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pharmacy.Operation.GeoDataService", "Pharmacy.Operations.DataService\Pharmacy.Operation.GeoDataService\Pharmacy.Operation.GeoDataService.csproj", "{A6CE5127-7698-4654-882C-23FFE0CD2DB0}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Pharmacy.Operation.Heatmap", "Pharmacy.Operations\Pharmacy.Operation.Heatmap\Pharmacy.Operation.Heatmap.csproj", "{A6BABF8B-B03C-4607-871B-7C9452B3EF41}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{19ACC4DE-EF73-4946-B6B3-683A07B85D7D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{19ACC4DE-EF73-4946-B6B3-683A07B85D7D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{19ACC4DE-EF73-4946-B6B3-683A07B85D7D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{19ACC4DE-EF73-4946-B6B3-683A07B85D7D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A6CE5127-7698-4654-882C-23FFE0CD2DB0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A6CE5127-7698-4654-882C-23FFE0CD2DB0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A6CE5127-7698-4654-882C-23FFE0CD2DB0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A6CE5127-7698-4654-882C-23FFE0CD2DB0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A6BABF8B-B03C-4607-871B-7C9452B3EF41}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A6BABF8B-B03C-4607-871B-7C9452B3EF41}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A6BABF8B-B03C-4607-871B-7C9452B3EF41}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A6BABF8B-B03C-4607-871B-7C9452B3EF41}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {A2874383-C2F2-4598-8146-6842B87ABBAC}
+	EndGlobalSection
+EndGlobal

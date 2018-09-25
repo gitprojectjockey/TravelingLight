@@ -1,0 +1,1 @@
+﻿<%@ ServiceHost Language="C#" Debug="true" Service="Pharmacy.Operation.GeoDataService.GeoService" CodeBehind="GeoService.svc.cs" %>

@@ -1,0 +1,161 @@
+﻿<!DOCTYPE html>
+
+@{
+    Layout = "_Layout";
+}
+
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Pharmacy Orders Heat Map</title>
+</head>
+
+<body>
+    <header>
+        <div id="nav-container" style="width:75px">
+            <nav>
+                <a href="#" id="menu-icon"></a>
+            </nav>
+        </div>
+    </header>
+
+    @Html.Hidden("SelectedGradient")
+    @Html.Hidden("SelectedRadius")
+    @Html.Hidden("SelectedOpacity")
+
+    @if (ViewData["WCFEndpointError"] != null)
+    {
+        @Html.Hidden("GeoDataService-Found", "F");
+        @Html.Hidden("DataServiceErrorMessage", ViewData["WCFEndpointError"]);
+    }
+    else
+    {
+        @Html.Hidden("DataServiceErrorMessage", "")
+        @Html.Hidden("GeoDataService-Found", "T")
+    }
+
+    <div id="div-nav-buttons" class="div-nav-buttons-hide">
+        <button id="cg" onclick="changeGradient()" class="btn btn-sm btn-info btn-block">Gradient</button>
+        <button id="cr" onclick="changeRadius()" class="btn btn-sm btn-info btn-block">Radius</button>
+        <button id="co" onclick="changeOpacity()" class="btn btn-sm btn-info btn-block">Opacity</button>
+    </div>
+    <div class="row">
+        <div id="lg" class="col-md-12 hidden-md hidden-sm hidden-sx">
+            <div id="floating-panel" class="btn-group-lg" role="group">
+                <button onclick="changeGradient()" type="button" class="btn btn-primary button-shadow">
+                    Change gradient
+                    <i class="fa fa-eye"></i>
+                </button>
+                <button onclick="changeRadius()" type="button" class="btn btn-primary button-shadow">
+                    Change radius
+                    <i class="fa fa-eye"></i>
+                </button>
+                <button onclick="changeOpacity()" type="button" class="btn btn-primary button-shadow">
+                    Change opacity
+                    <i class="fa fa-eye"></i>
+                </button>
+                <button onclick="refreshMap();" type="button" class="btn btn-primary button-shadow pull-right">
+                    Refresh now
+                    <i class="fa fa-recycle"></i>
+                </button>
+            </div>
+        </div>
+        <div id="md" class="col-md-12 hidden-lg hidden-sm hidden-sx">
+            <div id="floating-panel" class="btn-group-md" role="group">
+                <button onclick="changeGradient()" type="button" class="btn btn-primary button-shadow">
+                    Change gradient
+                    <i class="fa fa-eye"></i>
+                </button>
+                <button onclick="changeRadius()" type="button" class="btn btn-primary button-shadow">
+                    Change radius
+                    <i class="fa fa-eye"></i>
+                </button>
+                <button onclick="changeOpacity()" type="button" class="btn btn-primary button-shadow">
+                    Change opacity
+                    <i class="fa fa-eye"></i>
+                </button>
+                <button onclick="refreshMap();" type="button" class="btn btn-primary button-shadow pull-right">
+                    Refresh now
+                    <i class="fa fa-recycle"></i>
+                </button>
+            </div>
+        </div>
+        <div id="sm" class="col-md-12 hidden-lg hidden-md hidden-sx">
+            <div id="floating-panel" class="btn-group-sm" role="group">
+                <button onclick="changeGradient()" type="button" class="btn btn-primary button-shadow">
+                    Change gradient
+                    <i class="fa fa-eye"></i>
+                </button>
+                <button onclick="changeRadius()" type="button" class="btn btn-primary button-shadow">
+                    Change radius
+                    <i class="fa fa-eye"></i>
+                </button>
+                <button onclick="changeOpacity()" type="button" class="btn btn-primary button-shadow">
+                    Change opacity
+                    <i class="fa fa-eye"></i>
+                </button>
+                <button onclick="refreshMap();" type="button" class="btn btn-primary button-shadow pull-right">
+                    Refresh now
+                    <i class="fa fa-recycle"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div id="loading-div-background" class="col-md-12" style="padding-top:50px">
+            <div id="loading-div" class="ui-corner-all">
+                <div id="loadingbar">
+                    <i class="fa fa-cog fa-spin fa-3x fa-fw"></i>
+                </div>
+                <h2 style="color:white;font-weight:normal;">Collecting Pharmacy Heat Points....</h2>
+            </div>
+        </div>
+        <div id="validationError" class="alert alert-danger collapse">
+            <a id="linkCollapseValidationError" class="close" href="#">&times;</a>
+            <div id="errorMessage"></div>
+        </div>
+        <div id="map" class="col-md-12" style="height:700px;border:solid thick;visibility:visible;z-index:1" />
+    </div>
+
+    <div class="row" id="robotVideos" style="visibility:visible">
+        <div class="col-md-6">
+            <h5>
+                Lakeland - Philmore A
+            </h5>
+            <img src="http://10.151.100.30/mjpg/video.mjpg" class="robotVideo" />
+        </div>
+        <div class="col-md-6 pull-right">
+            <h5>
+                Lakeland - Philmore B
+            </h5>
+            <img src="http://10.151.100.31/mjpg/video.mjpg" class="robotVideo" />
+        </div>
+        <div style="clear: both;">
+        </div>
+    </div>
+    <br />
+    <div class="row bottom-left" id="robotVideosDisabled" style="visibility:visible">
+        <p class="fa fa-exclamation-triangle">
+            <i >
+                Sorry, I can not show you the Lakeland robot video files with this browser... Please try Google Chrome.
+            </i>
+        </p>
+    </div>
+
+
+    @if (ViewData["WCFEndpointError"] != null)
+    {
+        <script>
+            showCommBreakdownMessage();
+        </script>
+    }
+    else
+    {
+        <script defer
+                src="https://maps.googleapis.com/maps/api/js?key=AIzaSyARX2TAKGkEv73tWfjZjKSsmbV52z0Z89M&libraries=visualization&callback=initMap">
+        </script>
+    }
+
+
+</body>
+</html>
